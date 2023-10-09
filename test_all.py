@@ -149,6 +149,10 @@ class ONNXExporterTester(unittest.TestCase):
             self.ort_validate(onnx_io, test_inputs, test_ouputs, tolerate_small_mismatch)
 
     def ort_validate(self, onnx_io, inputs, outputs, tolerate_small_mismatch=False):
+        if not torch.cuda.is_available():
+            providers = ['CPUExecutionProvider']
+        else:
+            providers = ['CUDAExecutionProvider', 'CPUExecutionProvider']
 
         inputs, _ = torch.jit._flatten(inputs)
         outputs, _ = torch.jit._flatten(outputs)
@@ -162,7 +166,7 @@ class ONNXExporterTester(unittest.TestCase):
         inputs = list(map(to_numpy, inputs))
         outputs = list(map(to_numpy, outputs))
 
-        ort_session = onnxruntime.InferenceSession(onnx_io.getvalue())
+        ort_session = onnxruntime.InferenceSession(onnx_io.getvalue(), providers=providers)
         # compute onnxruntime output prediction
         ort_inputs = dict((ort_session.get_inputs()[i].name, inpt) for i, inpt in enumerate(inputs))
         ort_outs = ort_session.run(None, ort_inputs)
