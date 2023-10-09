@@ -31,9 +31,6 @@ class DETR(nn.Module):
             aux_loss: True if auxiliary decoding losses (loss at each decoder layer) are to be used.
         """
         super().__init__()
-        self.num_classes = num_classes
-        self.num_queries = num_queries
-
         self.num_queries = num_queries
         self.transformer = transformer
         hidden_dim = transformer.d_model
