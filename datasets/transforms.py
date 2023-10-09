@@ -226,7 +226,7 @@ class RandomSelect(object):
 
 
 class ToTensor(object):
-    def __call__(self, img, target):
+    def __call__(self, img, target=None):
         return F.to_tensor(img), target
 
 
