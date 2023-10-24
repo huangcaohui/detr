@@ -177,11 +177,15 @@ def main(args):
                 args.resume, map_location='cpu', check_hash=True)
         else:
             checkpoint = torch.load(args.resume, map_location='cpu')
-            checkpoint['model']['class_embed.weight'], \
-            checkpoint['model']['class_embed.bias'], \
-            checkpoint['model']['query_embed.weight'] = model_without_ddp.reset_weight()
+            if not args.eval:
+                checkpoint['model']['class_embed.weight'], \
+                checkpoint['model']['class_embed.bias'], \
+                checkpoint['model']['query_embed.weight'] = model_without_ddp.reset_weight()
 
-        model_without_ddp.load_state_dict(checkpoint['model'])
+        if not args.eval:
+            model_without_ddp.load_state_dict(checkpoint['model'])
+        else:
+            model_without_ddp = checkpoint['model']
         if not args.eval and 'optimizer' in checkpoint and 'lr_scheduler' in checkpoint and 'epoch' in checkpoint:
             optimizer.load_state_dict(checkpoint['optimizer'])
             lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
