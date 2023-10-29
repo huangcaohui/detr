@@ -54,6 +54,7 @@ def get_args_parser():
                         help="Number of attention heads inside the transformer's attentions")
     parser.add_argument('--num_queries', default=10, type=int,
                         help="Number of query slots")
+    parser.add_argument('--num_classes', default=1, type=int, help="Number of classes")
     parser.add_argument('--pre_norm', action='store_true')
 
     # * Segmentation

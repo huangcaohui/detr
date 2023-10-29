@@ -284,7 +284,7 @@ if __name__ == '__main__':
     # parseXmlFiles_by_txt(voc_data_dir,json_save_path,"trainval")
  
     #通过文件夹生成
-    ann_path="/home/caohuihu/BUAA-MSC-Thesis-Code/research_2/data/odo_annotated_voc/test/labels"
-    json_save_path="/home/caohuihu/BUAA-MSC-Thesis-Code/research_2/data/odo_annotated_coco/annotations/test.json"
-    parseXmlFiles(ann_path,json_save_path)
+    ann_path="/home/caohuihu/BUAA-MSC-Thesis-Code/research_3/data/cars_annotated_voc/valid/labels"
+    json_save_path="/home/caohuihu/BUAA-MSC-Thesis-Code/research_3/data/cars_annotated_coco/annotations/valid.json"
+    parseXmlFiles(ann_path, json_save_path)
  
