@@ -11,9 +11,9 @@ from util.box_ops import box_cxcywh_to_xyxy
 import os.path as osp
 
 
-model_path = "./exps/r50_detr/checkpoint0499.pth"  # 模型权重路径
+model_path = "./exps/r50_detr_epoch1500/checkpoint0499.pth"  # 模型权重路径
 image_path = './demo/car_head.jpg'  # 测试图像路径
-save_path = '/home/caohuihu/share/' + osp.basename(image_path).split('.')[0] + '_result.png'  # 保存结果图像路径
+save_path = './demo/' + osp.basename(image_path).split('.')[0] + '_result.png'  # 保存结果图像路径
 conf_threshold = 0.7  # 置信度阈值
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
