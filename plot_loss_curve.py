@@ -1,6 +1,9 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+# sns.set_style('darkgrid',{'font.sans-serif':['simhei','Arial']})
+# plt.rcParams['font.size'] = 14 # 设置字体大小
+
 def smooth_loss(loss_values, alpha = 0.6):  # alpha平滑系数，取值范围为0到1之间
     smoothed_values = [loss_values[0]]
 
